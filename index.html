@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Special Message For You</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #ffeef8 0%, #ffd6e8 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(220, 80, 130, 0.15);
+        text-align: center;
+        max-width: 450px;
+        width: 90%;
+        border: 1px solid rgba(255, 182, 193, 0.5);
+      }
+
+      h1 {
+        color: #d63384;
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: #6c757d;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        position: relative;
+        height: 50px;
+      }
+
+      button {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          background-color 0.2s;
+        font-weight: bold;
+      }
+
+      #yesBtn {
+        background-color: #d63384;
+        color: white;
+        box-shadow: 0 5px 15px rgba(214, 51, 132, 0.4);
+      }
+
+      #yesBtn:hover {
+        background-color: #b8236c;
+        transform: scale(1.05);
+      }
+
+      #noBtn {
+        background-color: #f8f9fa;
+        color: #6c757d;
+        border: 1px solid #dee2e6;
+        position: absolute;
+      }
+
+      .popup {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+      }
+
+      .popup-content {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        width: 350px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+
+        animation: popupShow 0.3s ease;
+      }
+
+      .popup-content h2 {
+        color: #d63384;
+        margin-bottom: 10px;
+      }
+
+      .popup-content p {
+        margin-bottom: 20px;
+      }
+
+      .popup-content button {
+        background: #d63384;
+        color: white;
+      }
+
+      @keyframes popupShow {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Will you marry me? ❤️</h1>
+      <p>
+        Every single day spent with you has been a blessing. I cannot wait to
+        build our forever together. What do you say?
+      </p>
+
+      <div class="btn-container">
+        <button id="yesBtn" onclick="celebrate()">Yes!</button>
+        <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">
+          No
+        </button>
+      </div>
+    </div>
+
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <h2>💖 Yay! 💖</h2>
+        <p>You made me the happiest person alive!</p>
+        <button onclick="closePopup()">Close</button>
+      </div>
+    </div>
+
+    <script>
+      // Pre-position the "No" button dynamically to the right side initially
+      const noBtn = document.getElementById("noBtn");
+      noBtn.style.left = "55%";
+
+      function moveButton() {
+        // Generates random position coordinates within the viewport boundaries
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20);
+        const y =
+          Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
+
+        // Forces the button out of the container layout to fly around the screen
+        noBtn.style.position = "fixed";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+      }
+
+      function celebrate() {
+        document.getElementById("popup").style.display = "flex";
+      }
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
